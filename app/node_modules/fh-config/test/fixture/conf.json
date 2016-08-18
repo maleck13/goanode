@@ -1,0 +1,11 @@
+{
+  "settings": {
+    "test": "test",
+    "test_empty": "{{env.TEST_MISSING_ENV_VALUE}}",
+    "test_default": "{{fallback(env.TEST_MISSING_ENV_VALUE,'testDef')}}",
+    "test_multiple": "http://{{env.TEST_ENV_HOST}}:{{env.TEST_ENV_PORT}}",
+    "test_execute": "{{exec('echo executed')}}-value",
+    "failcmd": "{{exec('donotusenodejscmd')}}",
+    "original_cmd": "{{exec('echo test1 && echo test2')}}"
+  }
+}

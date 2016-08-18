@@ -1,0 +1,27 @@
+{
+  "name": "reference_app",
+  "version": "1.0.0",
+  "description": "\"reference app for goanode\"",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies":{
+    "express":"4.14.0",
+    "fh-config": "1.0.0",
+    "fh-health": "0.2.0",
+    "fh-logger": "0.5.1",
+    "body-parser": "1.4.3",
+    "cors": "2.7.1",
+    "fh-cluster": "0.3.0",
+    "lodash":"4.15.0"
+  },
+  "devDependencies":{
+    "mocha": "^2.3.4",
+    "proxyquire": "0.5.3",
+    "supertest": "0.8.2",
+    "grunt-fh-build": "1.0.2"
+  }
+}

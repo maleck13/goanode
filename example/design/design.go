@@ -10,13 +10,16 @@ var _ = API("cellar", func() {                     // API defines the microservi
 	Title("The virtual wine cellar")           // other global properties. There should be one
 	Description("A simple goa service")        // and exactly one API definition appearing in
 	Scheme("http")                             // the design.
+	Origin("*",func() {
+		Methods("GET", "POST", "DELETE", "PUT")
+	})
 	Host("localhost:8080")
+	Produces("application/json")
 })
 
 var _ = Resource("bottle", func() {                // Resources group related API endpoints
 	BasePath("/bottles")                       // together. They map to REST resources for REST
 	DefaultMedia(BottleMedia)                  // services.
-	Metadata("pseudo:port")
 
 	Action("show", func() {                    // Actions define a single API endpoint together
 		Description("Get bottle by id")    // with its path, parameters (both path
@@ -26,6 +29,37 @@ var _ = Resource("bottle", func() {                // Resources group related AP
 		})
 		Response(OK)                       // Responses define the shape and status code
 		Response(NotFound)                 // of HTTP responses.
+	})
+	Action("create", func() {                    // Actions define a single API endpoint together
+		Description("create a bottle")    // with its path, parameters (both path
+		Routing(POST("/"))         // parameters and querystring values) and payload
+		Payload(Bottle)
+		Response(Created)                       // Responses define the shape and status code
+		Response(BadRequest)                 // of HTTP responses.
+	})
+	Action("delete", func() {                    // Actions define a single API endpoint together
+		Description("delete a bottle")    // with its path, parameters (both path
+		Routing(DELETE("/:bottleID"))         // parameters and querystring values) and payload
+		Params(func() {
+			Param("bottleID", Integer,"Bottle ID")
+		})
+		Response(NoContent)                       // Responses define the shape and status code
+		Response(BadRequest)                 // of HTTP responses.
+		Response(NotFound)
+	})
+	Action("update", func() {                    // Actions define a single API endpoint together
+		Description("update a bottle")    // with its path, parameters (both path
+		Routing(POST("/:bottleID"))         // parameters and querystring values) and payload
+		Payload(Bottle)
+		Response(OK)                       // Responses define the shape and status code
+		Response(BadRequest)                 // of HTTP responses.
+	})
+	Action("list", func() {                    // Actions define a single API endpoint together
+		Description("list bottle")    // with its path, parameters (both path
+		Routing(GET("/"))         // parameters and querystring values) and payload
+		Payload(CollectionOf(BottleMedia))
+		Response(OK)                       // Responses define the shape and status code
+		Response(InternalServerError)                 // of HTTP responses.
 	})
 })
 
@@ -43,4 +77,9 @@ var BottleMedia = MediaType("application/vnd.goa.example.bottle+json", func() {
 		Attribute("href")                   // have a "default" view.
 		Attribute("name")
 	})
+})
+
+var Bottle = Type("Bottle", func() {
+	Attribute("href")
+	Attribute("name")
 })
