@@ -2,6 +2,12 @@
  * Created by kelly on 16/08/2016.
  */
 
+var express = require('express');
+var fhconfig = require('fh-config');
+var cors = require('cors');
+var bodyParser = require('body-parser');
+var fhcluster = require('fh-cluster');
+var lodash = require('loadash');
 
 var TITLE = "cellar";
 process.env.component = TITLE;
@@ -24,4 +30,10 @@ if (args.h) {
 
 if (args._.length < 1) {
   usage();
+}
+
+
+
+function main(){
+	async.series([])
 }
