@@ -17,7 +17,8 @@
     "fh-config": "1.0.0",
     "fh-health": "0.2.0",
     "fh-logger": "0.5.1",
-    "lodash": "4.15.0"
+    "lodash": "4.15.0",
+    "express-bunyan-logger":""
   },
   "devDependencies": {
     "mocha": "^2.3.4",
