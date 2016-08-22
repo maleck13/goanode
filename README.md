@@ -21,6 +21,11 @@ cd myapp/tool/cellar_cli
 go build .
 ./cellar_cli bottle show --bottleID=10
 
+
+## try from swagger http://editor.swagger.io/
+
+copy the contents of myapp/swagger/swagger.yaml into the swagger editor and start your app. Should be good to try the api
+
 ```
 
 ## Issues
