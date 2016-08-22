@@ -8,14 +8,14 @@ import (
 
 	"github.com/goadesign/goa/design"
 	"github.com/goadesign/goa/goagen/codegen"
-	"text/template"
 	"strconv"
+	"text/template"
 )
 
 type ConfigGenerator struct {
 	OutDir string
 	Api    *design.APIDefinition
-	Port int
+	Port   int
 }
 
 func ConfigGenerate() ([]string, error) {
@@ -43,24 +43,22 @@ func (cg *ConfigGenerator) Generate() ([]string, error) {
 	confFile := filepath.Join(cg.OutDir, "config", "dev.json")
 	confVal := filepath.Join(cg.OutDir, "config", "configValidation.js")
 	port := cg.Api.Host[strings.LastIndex(cg.Api.Host, ":")+1:]
-	pInt,err := strconv.ParseInt(port,10,32)
+	pInt, err := strconv.ParseInt(port, 10, 32)
 	if err != nil {
 		return nil, err
 	}
 	cg.Port = int(pInt)
 
-
 	confT := template.New("conf")
-	confT , err = confT.Funcs(CommonTemplateFuncs).Parse(confFileTemplate)
-	if err != nil{
-		return nil,err
+	confT, err = confT.Funcs(CommonTemplateFuncs).Parse(confFileTemplate)
+	if err != nil {
+		return nil, err
 	}
 	confV := template.New("confValidate")
-	confV, err  = confV.Parse(confValidateTemplate)
-	if err != nil{
-		return nil,err
+	confV, err = confV.Parse(confValidateTemplate)
+	if err != nil {
+		return nil, err
 	}
-
 
 	if err := CreateDirIfNotExists(cg.OutDir + "/config"); err != nil {
 		return nil, err
@@ -73,23 +71,22 @@ func (cg *ConfigGenerator) Generate() ([]string, error) {
 		return nil, err
 	}
 
-
-	f, err := os.OpenFile(confFile,os.O_WRONLY|os.O_TRUNC,0766)
-	if err != nil{
-		return nil,err
+	f, err := os.OpenFile(confFile, os.O_WRONLY|os.O_TRUNC, 0766)
+	if err != nil {
+		return nil, err
 	}
 	defer f.Close()
-	if err := confT.Execute(f,cg); err != nil{
-		return nil,err
+	if err := confT.Execute(f, cg); err != nil {
+		return nil, err
 	}
-	cf, err := os.OpenFile(confVal,os.O_WRONLY|os.O_TRUNC,0766)
-	if err != nil{
-		return nil,err
+	cf, err := os.OpenFile(confVal, os.O_WRONLY|os.O_TRUNC, 0766)
+	if err != nil {
+		return nil, err
 	}
 	defer cf.Close()
 
-	if err := confV.Execute(cf,nil); err != nil{
-		return nil,err
+	if err := confV.Execute(cf, nil); err != nil {
+		return nil, err
 	}
 
 	return []string{confFile, confVal}, nil
