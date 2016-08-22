@@ -1,4 +1,66 @@
-/**
+package generators
+
+import (
+	"flag"
+	"fmt"
+	"os"
+	"text/template"
+
+	"github.com/goadesign/goa/design"
+	"github.com/goadesign/goa/goagen/codegen"
+)
+
+type ServerGenerator struct {
+	OutDir string
+	Api    *design.APIDefinition
+}
+
+func ServerGenerate() ([]string, error) {
+	var (
+		outDir string
+		ver    string
+	)
+	set := flag.NewFlagSet("app", flag.PanicOnError)
+	set.String("design", "", "")
+	set.StringVar(&outDir, "out", "", "")
+	set.StringVar(&ver, "version", "", "")
+	set.Parse(os.Args[1:])
+	if err := codegen.CheckVersion(ver); err != nil {
+		return nil, err
+	}
+
+	g := &ServerGenerator{OutDir: outDir, Api: design.Design}
+
+	return g.Generate()
+}
+
+func (se *ServerGenerator) Generate() ([]string, error) {
+	fileName := se.OutDir + "/main.js"
+	var files []string
+	files = append(files, fileName)
+	if err := CreateFileIfNotExists(fileName); err != nil {
+		return nil, err
+	}
+	f, err := os.OpenFile(fileName, os.O_WRONLY|os.O_TRUNC, 0666)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
+	}
+	defer f.Close()
+	t := template.New("main").Funcs(CommonTemplateFuncs)
+	t, err = t.Parse(mainTemplate)
+	if err != nil {
+		fmt.Println("error parsing", err)
+		return nil, err
+	}
+	if err := t.Execute(f, se.Api); err != nil {
+		return nil, err
+	}
+
+	return files, nil
+}
+
+var mainTemplate = `/**
  * Created by kelly on 16/08/2016.
  */
 
@@ -15,10 +77,9 @@ var util = require('util');
 var path =require('path');
 var fs = require('fs');
 var route = require('./router');
-var errorHandler = require('./error');
 var logger;
 
-var TITLE = "cellar";
+var TITLE = "{{.Name}}";
 process.env.component = TITLE;
 if (!process.env.conf_file) {
   process.env.conf_file = process.argv[2];
@@ -94,6 +155,32 @@ function startWorker(){
   startApp();
 }
 
+function errorHandler(err,req,res,  next){
+  var responseData;
+    if (err.name === 'JsonSchemaValidation') {
+
+        // Log the error however you please
+        console.log(err.message);
+        // logs "express-jsonschema: Invalid data found"
+
+        // Set a bad request http response status
+        res.status(400);
+
+        // Format the response body
+        responseData = {
+           statusText: 'Bad Request',
+           jsonSchemaValidation: true,
+           validations: err.validations  // All of your validation information
+        };
+
+       res.json(responseData);
+
+    } else {
+        // pass error to next error middleware handler
+        next(err);
+    }
+};
+
 function startApp(){
   var app = express();
   app.use(logger.requestIdMiddleware);
@@ -146,3 +233,4 @@ function main(){
 }
 
 main();
+`

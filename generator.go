@@ -2,12 +2,14 @@ package goanode
 
 import (
 	"flag"
-	"github.com/goadesign/goa/design"
-	"github.com/goadesign/goa/goagen/codegen"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/goadesign/goa/design"
+	"github.com/goadesign/goa/goagen/codegen"
+	"github.com/goadesign/goa/goagen/gen_client"
 	"github.com/goadesign/goa/goagen/gen_swagger"
 	"github.com/maleck13/goanode/generators"
 )
@@ -30,24 +32,59 @@ func Generate() ([]string, error) {
 
 	files := make([]string, 0)
 
-	sFiles , err := genswagger.Generate()
-	if err != nil{
-		return nil,err
+	sFiles, err := genswagger.Generate()
+	if err != nil {
+		return nil, err
 	}
-	files = append(files,sFiles...)
+	files = append(files, sFiles...)
 
-	sFiles , err = generators.PackageJsonGenerate()
-	if err != nil{
-		return nil,err
+	sFiles, err = genclient.Generate()
+	if err != nil {
+		return nil, err
 	}
-	files = append(files,sFiles...)
-	sFiles, err = WriteNames(design.Design, outDir)
-	if err != nil{
-		return nil,err
-	}
-	files = append(files,sFiles...)
+	files = append(files, sFiles...)
 
-	return WriteNames(design.Design, outDir)
+	sFiles, err = generators.PackageJsonGenerate()
+	if err != nil {
+		return nil, err
+	}
+	files = append(files, sFiles...)
+
+	sFiles, err = generators.HandlerGenerate()
+	if err != nil {
+		return nil, err
+	}
+	files = append(files, sFiles...)
+
+	sFiles, err = generators.RouterGenerate()
+	if err != nil {
+		return nil, err
+	}
+
+	files = append(files, sFiles...)
+
+	sFiles, err = generators.ModelGenerate()
+	if err != nil {
+		return nil, err
+	}
+
+	files = append(files, sFiles...)
+
+	sFiles, err = generators.ServerGenerate()
+	if err != nil {
+		return nil, err
+	}
+
+	files = append(files, sFiles...)
+
+	sFiles, err = generators.ConfigGenerate()
+	if err != nil {
+		return nil, err
+	}
+
+	files = append(files, sFiles...)
+
+	return files, nil
 }
 
 // WriteNames creates the names.txt file.

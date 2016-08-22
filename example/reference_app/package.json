@@ -13,12 +13,14 @@
     "body-parser": "1.4.3",
     "cors": "2.7.1",
     "express": "4.14.0",
+    "express-bunyan-logger": "1.2.0",
+    "express-jsonschema": "^1.1.0",
     "fh-cluster": "0.3.0",
     "fh-config": "1.0.0",
     "fh-health": "0.2.0",
     "fh-logger": "0.5.1",
     "lodash": "4.15.0",
-    "express-bunyan-logger":""
+    "optimist": "0.6.1"
   },
   "devDependencies": {
     "mocha": "^2.3.4",
