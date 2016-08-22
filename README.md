@@ -4,6 +4,7 @@
 ```
 go get github.com/goadesign/goa
 go get github.com/goadesign/goa/goagen
+go get github.com/maleck13/goanode
 
 create a design or to try it out copy the design in  github.com/maleck13/goanode/example/design/design.go
 
