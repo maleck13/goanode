@@ -81,13 +81,13 @@ var BottleMedia = MediaType("application/vnd.goa.example.bottle+json", func() {
 	})
 })
 
-var Bottle = Type("CreateBottlePayload", func() {
+var Bottle = Type("CreateBottle", func() {
 	Attribute("href", String)
 	Attribute("name", String)
 	Required("href", "name")
 })
 
-var Bottle2 = Type("UpdateBottlePayload", func() {
+var Bottle2 = Type("UpdateBottle", func() {
 	Attribute("id", String)
 	Attribute("href", String)
 	Attribute("name", String)

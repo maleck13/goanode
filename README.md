@@ -2,7 +2,23 @@
 
 
 ```
-goagen gen -d github.com/maleck13/goanode/example/design --pkg-path=github.com/maleck13/goanode -o=app
+go get github.com/goadesign/goa
+go get github.com/goadesign/goa/goagen
+
+create a design or to try it out copy the design in  github.com/maleck13/goanode/example/design/design.go
+
+
+mkdir myapp
+cd myapp
+goagen gen -d <path to design.go> --pkg-path=github.com/maleck13/goanode -o=app
+cd app
+npm install .
+node main.js ./config/dev.json
+
+##make the cli
+cd myapp/tool/cellar_cli
+go build .
+./cellar_cli bottle show --bottleID=10
 
 ```
 
