@@ -14,6 +14,7 @@ var _ = API("cellar", func() { // API defines the microservice endpoint and
 	})
 	Host("localhost:3200")
 	Produces("application/json")
+	Consumes("application/json")
 })
 
 var _ = Resource("bottle", func() { // Resources group related API endpoints

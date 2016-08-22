@@ -1,19 +1,48 @@
 hash: 0248a957b6ba35271b28461963e4adabfc03bbe37883205c104b4bb0426191ab
-updated: 2016-08-15T21:35:32.937968208+01:00
+updated: 2016-08-22T11:33:59.082486944+01:00
 imports:
+- name: github.com/armon/go-metrics
+  version: 3df31a1ada83e310c2e24b267c8e8b68836547b4
 - name: github.com/dimfeld/httppath
   version: c8e499c3ef3c3e272ed8bdcc1ccf39f73c88debc
+- name: github.com/dimfeld/httptreemux
+  version: 44179433cb08588bbb4cb250fb30d1c9fff4305a
 - name: github.com/goadesign/goa
   version: ab3c7a17b736722ca9200b9536f5dcb1efcec9f6
   subpackages:
+  - goagen/codegen
+  - goagen/gen_client
+  - goagen/gen_swagger
   - design
+  - design/apidsl
+  - client
+  - uuid
   - dslengine
+  - version
+  - goagen/gen_app
+  - goagen/utils
+  - goagen/gen_schema
+- name: github.com/inconshreveable/mousetrap
+  version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
 - name: github.com/manveru/faker
   version: 717f7cf83fb78669bfab612749c2e8ff63d5be11
 - name: github.com/satori/go.uuid
   version: 0aa62d5ddceb50dbcb909d790b5345affd3669b6
 - name: github.com/spf13/cobra
   version: 7c674d9e72017ed25f6d2b5e497a1368086b6a6f
+- name: github.com/spf13/pflag
+  version: 103ce5cd2042f2fe629c1957abb64ab3e7f50235
 - name: github.com/zach-klippenstein/goregen
   version: 795b5e3961ea1912fde60af417ad85e86acc0d6a
+- name: golang.org/x/net
+  version: 7394c112eae4dba7e96bfcfe738e6373d61772b4
+  subpackages:
+  - context
+  - websocket
+- name: golang.org/x/tools
+  version: 8ea9d4606980305f7f46cabde046adbb530e71c8
+  subpackages:
+  - go/ast/astutil
+- name: gopkg.in/yaml.v2
+  version: e4d366fc3c7938e2958e662b4258c7a89e1f0e3e
 testImports: []
