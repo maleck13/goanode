@@ -36,11 +36,6 @@ func Generate() ([]string, error) {
 	}
 	files = append(files, sFiles...)
 
-	sFiles, err = generators.PackageJsonGenerate()
-	if err != nil {
-		return nil, err
-	}
-	files = append(files, sFiles...)
 	//generate cli client
 	sFiles, err = genclient.Generate()
 	if err != nil {
