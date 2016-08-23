@@ -14,7 +14,7 @@ git checkout v1.0.0
 
 create a design or to try it out copy the design in  $GOPATH/src/github.com/maleck13/goanode/example/design/design.go
 
-
+```
 mkdir -p $GOPATH/src/github.com/fheng/myapp/design
 cd $GOPATH/src/github.com/fheng/myapp
 cp $GOPATH/src/github.com/maleck13/goanode/example/design/design.go ./design/design.go
@@ -23,11 +23,14 @@ cd app
 npm install .
 node main.js ./config/dev.json
 
+```
+
 ##make the cli
+```
 cd myapp/tool/cellar_cli
 go build .
 ./cellar_cli bottle show --bottleID=10
-
+```
 
 ## try from swagger http://editor.swagger.io/
 
