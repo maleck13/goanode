@@ -8,6 +8,9 @@ install golang folling the instructions at golang.org
 go get github.com/goadesign/goa
 go get github.com/goadesign/goa/goagen
 go get github.com/maleck13/goanode
+cd $GOPATH/src/github.com/goadesign/goa
+git checkout v1.0.0
+```
 
 create a design or to try it out copy the design in  $GOPATH/src/github.com/maleck13/goanode/example/design/design.go
 
@@ -37,3 +40,4 @@ copy the contents of myapp/swagger/swagger.yaml into the swagger editor and star
  - Currently the dependencies in the package.json are hard coded. This makes it simple but not very useful to a wider audience
  - Cannot deal with deep user type defs yet
  - Not dealing with all the DSL just focused on the main bits for getting example working
+ - vendoring goa seems to cause issues with generation (not sure what the issue is yet)
