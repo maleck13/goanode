@@ -4,17 +4,20 @@ import (
 	"flag"
 	"os"
 
+	"github.com/goadesign/goa/design"
 	"github.com/goadesign/goa/goagen/codegen"
 	"github.com/goadesign/goa/goagen/gen_client"
 	"github.com/goadesign/goa/goagen/gen_swagger"
 	"github.com/maleck13/goanode/generators"
 )
 
+//Generate is the entry point for the goagen tool
 func Generate() ([]string, error) {
 	var (
 		ver    string
 		outDir string
 		files  []string
+		_      = design.Design
 	)
 	set := flag.NewFlagSet("app", flag.PanicOnError)
 	set.String("design", "", "") // Consume design argument so Parse doesn't complain
@@ -28,6 +31,12 @@ func Generate() ([]string, error) {
 	}
 	//generate swagger doc
 	sFiles, err := genswagger.Generate()
+	if err != nil {
+		return nil, err
+	}
+	files = append(files, sFiles...)
+
+	sFiles, err = generators.PackageJsonGenerate()
 	if err != nil {
 		return nil, err
 	}

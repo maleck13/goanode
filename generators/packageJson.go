@@ -6,6 +6,8 @@ import (
 	"path/filepath"
 	"text/template"
 
+	"errors"
+
 	"github.com/goadesign/goa/design"
 	"github.com/goadesign/goa/goagen/codegen"
 )
@@ -38,6 +40,9 @@ func PackageJsonGenerate() ([]string, error) {
 }
 
 func (pw *PackageJsonGenerator) Generate() ([]string, error) {
+	if pw.Api == nil {
+		return nil, errors.New("design.Design is nil")
+	}
 	t := template.New("packageJson")
 	t, err := t.Parse(packageJsonTemplate)
 	if err != nil {

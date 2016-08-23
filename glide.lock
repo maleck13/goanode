@@ -1,5 +1,5 @@
-hash: 0248a957b6ba35271b28461963e4adabfc03bbe37883205c104b4bb0426191ab
-updated: 2016-08-22T11:33:59.082486944+01:00
+hash: 74e0177fb0b3147af3c2e209646d6db3ec1b61f389480d2d9065ed6e6c1fc3f5
+updated: 2016-08-23T21:02:30.559789083+01:00
 imports:
 - name: github.com/armon/go-metrics
   version: 3df31a1ada83e310c2e24b267c8e8b68836547b4
@@ -7,21 +7,6 @@ imports:
   version: c8e499c3ef3c3e272ed8bdcc1ccf39f73c88debc
 - name: github.com/dimfeld/httptreemux
   version: 44179433cb08588bbb4cb250fb30d1c9fff4305a
-- name: github.com/goadesign/goa
-  version: ab3c7a17b736722ca9200b9536f5dcb1efcec9f6
-  subpackages:
-  - goagen/codegen
-  - goagen/gen_client
-  - goagen/gen_swagger
-  - design
-  - design/apidsl
-  - client
-  - uuid
-  - dslengine
-  - version
-  - goagen/gen_app
-  - goagen/utils
-  - goagen/gen_schema
 - name: github.com/inconshreveable/mousetrap
   version: 76626ae9c91c4f2a10f34cad8ce83ea42c93bb75
 - name: github.com/manveru/faker
@@ -40,7 +25,7 @@ imports:
   - context
   - websocket
 - name: golang.org/x/tools
-  version: 8ea9d4606980305f7f46cabde046adbb530e71c8
+  version: 2bbdb4568e161d12394da43e88b384c6be63928b
   subpackages:
   - go/ast/astutil
 - name: gopkg.in/yaml.v2

@@ -2,18 +2,20 @@
 
 ## Generating the app
 
+install golang folling the instructions at golang.org
 
 ```
 go get github.com/goadesign/goa
 go get github.com/goadesign/goa/goagen
 go get github.com/maleck13/goanode
 
-create a design or to try it out copy the design in  github.com/maleck13/goanode/example/design/design.go
+create a design or to try it out copy the design in  $GOPATH/src/github.com/maleck13/goanode/example/design/design.go
 
 
-mkdir myapp
-cd myapp
-goagen gen -d <path to design.go> --pkg-path=github.com/maleck13/goanode -o=app
+mkdir -p $GOPATH/src/github.com/fheng/myapp/design
+cd $GOPATH/src/github.com/fheng/myapp
+cp $GOPATH/src/github.com/maleck13/goanode/example/design/design.go ./design/design.go
+goagen gen -d github.com/fheng/myapp/design --pkg-path=github.com/maleck13/goanode -o=app
 cd app
 npm install .
 node main.js ./config/dev.json
