@@ -2,7 +2,7 @@
 
 ## Generating the app
 
-install golang folling the instructions at golang.org
+install golang folling the instructions at golang.org. Ensure to setup your $GOPATH  [docs](https://golang.org/doc/install#testing)
 
 ```
 go get github.com/goadesign/goa
