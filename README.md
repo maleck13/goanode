@@ -9,7 +9,7 @@ This project builds ontop of the [goa DSL](http://goa.design) to produce a basic
 - models
 - a main.js
 
-## Generating the app
+## Setup Environment
 
 install golang folling the instructions at golang.org. Ensure to setup your $GOPATH  [docs](https://golang.org/doc/install#testing)
 
@@ -20,6 +20,8 @@ go get github.com/maleck13/goanode
 cd $GOPATH/src/github.com/goadesign/goa
 git checkout v1.0.0
 ```
+
+## Generating a microservice bases on a api design
 
 create a design or to try it out copy the design in  $GOPATH/src/github.com/maleck13/goanode/example/design/design.go
 
