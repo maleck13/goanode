@@ -1,5 +1,14 @@
 ## Note this is a POC and not a full implementation. It is not ready for general use
 
+This project builds ontop of the [goa DSL](http://goa.design) to produce a basic nodejs micro service. It generates the following:
+- swagger docs
+- a cli tool with commands for your api
+- a package.json
+- a router
+- handlers
+- models
+- a main.js
+
 ## Generating the app
 
 install golang folling the instructions at golang.org. Ensure to setup your $GOPATH  [docs](https://golang.org/doc/install#testing)
