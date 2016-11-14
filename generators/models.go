@@ -60,7 +60,7 @@ func (mg *ModelGenerator) Generate() ([]string, error) {
 			return err
 		}
 		err = mg.Api.IterateUserTypes(func(ut *design.UserTypeDefinition) error {
-			fmt.Println(ut.AttributeDefinition.Type.ToObject()["href"].Type.Name())
+
 			if err := t.Execute(f, ut); err != nil {
 				return err
 			}
