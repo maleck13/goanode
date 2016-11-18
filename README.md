@@ -3,6 +3,8 @@
 This project builds ontop of the [goa DSL](http://goa.design) to produce a basic nodejs micro service. It generates the following:
 - swagger docs
 - a cli tool with commands for your api
+- a js client for use with your client code 
+- a go client for use with your go code 
 - a package.json
 - a router
 - handlers
@@ -13,11 +15,6 @@ This project builds ontop of the [goa DSL](http://goa.design) to produce a basic
 
 install Go folling the instructions at golang.org. Ensure to setup your $GOPATH  [docs](https://golang.org/doc/install#testing)
 If you want your $GOPATH to be $HOME/work. Create dir called src there. and then export ```export $GOPATH=$HOME/work```
-
-install glide
-```
-curl https://glide.sh/get | sh
-```
 
 
 ```
@@ -55,6 +52,14 @@ The flags are as follows:
 ``` --pkg-path``` is where the goanode generator lives 
 
 ``` -o ``` is the output directory or where the code will be generated.  
+
+##make the js client 
+
+```
+ cd $GOPATH/src/myapp/app 
+ goagen js -d myapp/design  
+```
+
 
 ##make the cli
 ```
