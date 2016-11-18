@@ -12,13 +12,19 @@ This project builds ontop of the [goa DSL](http://goa.design) to produce a basic
 ## Setup Environment
 
 install Go folling the instructions at golang.org. Ensure to setup your $GOPATH  [docs](https://golang.org/doc/install#testing)
-If you want your $GOPATH to be $HOME/work. Create dir called src there. and then export ```export $GOPATH=$HOME/work``` 
+If you want your $GOPATH to be $HOME/work. Create dir called src there. and then export ```export $GOPATH=$HOME/work```
+
+install glide
+```
+curl https://glide.sh/get | sh
+```
+
+
 ```
 go get github.com/goadesign/goa
 go get github.com/goadesign/goa/goagen
 mkdir -p $GOPATH/src/github.com/maleck13
-cd  $GOPATH/src/github.com/maleck13
-git clone github.com/maleck13/goanode
+go get github.com/maleck13/goanode
 cd $GOPATH/src/github.com/goadesign/goa
 git checkout v1.0.0
 cd $GOPATH/src/github.com/goadesign/goa/goagen
@@ -35,7 +41,7 @@ create a design or to try it out by copying the design in  $GOPATH/src/github.co
 mkdir -p $GOPATH/src/myapp/design 
 cd $GOPATH/src/myapp
 cp $GOPATH/src/github.com/maleck13/goanode/example/design/design.go ./design/design.go
-goagen gen -d src/myapp/design --pkg-path=github.com/maleck13/goanode -o=app
+goagen gen -d myapp/design --pkg-path=github.com/maleck13/goanode -o=app
 cd app
 npm install .
 node main.js ./config/dev.json
