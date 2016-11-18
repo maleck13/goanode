@@ -30,7 +30,7 @@ create a design or to try it out by copying the design in  $GOPATH/src/github.co
 
 
 ```
-mkdir -p $GOAPTH/src/myapp/design 
+mkdir -p $GOPATH/src/myapp/design 
 cd $GOPATH/src/myapp
 cp $GOPATH/src/github.com/maleck13/goanode/example/design/design.go ./design/design.go
 goagen gen -d $GOPATH/src/myapp/design --pkg-path=github.com/maleck13/goanode -o=app
