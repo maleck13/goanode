@@ -66,10 +66,11 @@ var routerTemplate = `
 	{{end}}{{end}}{{end}}
 	module.exports = function router(expressApp){
 		{{range $key,$val := .}}
+		const {{$key}}RequestHandler = {{$key}}Handler()
 		{{range $aKey, $aVal := $val.Actions}}
-				{{range .Routes }}{{if $aVal.Payload }}expressApp.{{toLower .Verb}}("{{.FullPath}}",validate({body: {{$aVal.Payload.TypeName}}}),{{$key}}Handler.{{$aVal.Name}}());
-		 		{{else}}expressApp.{{toLower .Verb}}("{{.FullPath}}",{{$key}}Handler.{{$aVal.Name}}());
-		 		{{end}}{{end}}{{end}}
+		{{range .Routes }}{{if $aVal.Payload }}expressApp.{{toLower .Verb}}("{{.FullPath}}",validate({body: {{$aVal.Payload.TypeName}}}),{{$key}}RequestHandler.{{$aVal.Name}}());
+		{{else}}expressApp.{{toLower .Verb}}("{{.FullPath}}",{{$key}}RequestHandler.{{$aVal.Name}}());
+		{{end}}{{end}}{{end}}
 	{{end}}
 	};
 `

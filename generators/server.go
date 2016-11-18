@@ -226,7 +226,6 @@ function main(){
         startWorker();
       }else{
         var numWorkers = args["workers"];
-        console.log("starting workers ", numWorkers);
         fhcluster(startWorker,numWorkers);
       }
     });

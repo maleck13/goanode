@@ -38,7 +38,6 @@ func HandlerGenerate() ([]string, error) {
 func (hg *HandlerGenerator) Generate() ([]string, error) {
 	hg.Api.IterateResources(func(r *design.ResourceDefinition) error {
 		outFile := filepath.Join(hg.OutDir, r.Name+".js")
-		fmt.Println(outFile)
 		if err := CreateFileIfNotExists(outFile); err != nil {
 			fmt.Println(err)
 			return err
@@ -69,13 +68,17 @@ func (hg *HandlerGenerator) Generate() ([]string, error) {
 }
 
 var handlerTemplate = `
-		{{range $key,$val :=  .Actions}}
-		exports["{{.Name}}"] = ()=>{
-			return function {{.Name}}Handler (req,res){
-				//your business logic here
-				res.json({});
-			};
-		};
+	 module.exports = function {{.Name}}(){
+	   return{
+	   {{range $key,$val :=  .Actions}}
+	     "{{.Name}}" : ()=>{
+		     return function {{.Name}}Handler (req,res){
+		       //your business logic here
+		       res.json({});
+		     };
+		 },
 		{{end}}
+		};
+	 }
 
 `
