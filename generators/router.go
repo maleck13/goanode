@@ -60,7 +60,6 @@ func (rg *RouterGenerator) Generate() ([]string, error) {
 }
 
 var routerTemplate = `
-	// This is a generated file. Do not edit manually
 	var validate = require('express-jsonschema').validate;
 	{{range $key,$val := .}}var {{$key}}Handler = require('./{{$key}}');
 	{{range $val.Actions}}{{if .Payload }}var {{.Payload.TypeName}} = require('./model/{{$key}}').{{gotypename .Payload nil 0 true}};
