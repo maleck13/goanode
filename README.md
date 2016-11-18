@@ -20,7 +20,6 @@ If you want your $GOPATH to be $HOME/work. Create dir called src there. and then
 ```
 go get github.com/goadesign/goa
 go get github.com/goadesign/goa/goagen
-mkdir -p $GOPATH/src/github.com/maleck13
 go get github.com/maleck13/goanode
 cd $GOPATH/src/github.com/goadesign/goa
 git checkout v1.0.0
