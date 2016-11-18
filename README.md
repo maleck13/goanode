@@ -58,9 +58,9 @@ The flags are as follows:
 
 ##make the cli
 ```
-cd myapp/tool/cellar_cli
+cd $GOPATH/src/myapp/app/tool/cellar_cli
 go build .
-./cellar_cli bottle show --bottleID=10
+./cellar_cli show bottle --bottleID=10
 ```
 
 ## try from swagger http://editor.swagger.io/
