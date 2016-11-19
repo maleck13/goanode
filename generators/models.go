@@ -52,7 +52,6 @@ func (mg *ModelGenerator) Generate() ([]string, error) {
 			return err
 		}
 		defer f.Close()
-		// fmt.Println("executing template", r.Actions)
 		t := template.New("models").Funcs(CommonTemplateFuncs)
 		t, err = t.Parse(modelTemplate)
 		if err != nil {

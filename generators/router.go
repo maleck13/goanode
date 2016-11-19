@@ -52,7 +52,6 @@ func (rg *RouterGenerator) Generate() ([]string, error) {
 		return nil, err
 	}
 	defer f.Close()
-	// fmt.Println("executing template", r.Actions)
 	if err := t.Execute(f, rg.Api.Resources); err != nil {
 		return nil, err
 	}

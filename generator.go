@@ -4,7 +4,6 @@ import (
 	"flag"
 	"os"
 
-	"github.com/goadesign/goa/design"
 	"github.com/goadesign/goa/goagen/codegen"
 	"github.com/goadesign/goa/goagen/gen_client"
 	"github.com/goadesign/goa/goagen/gen_swagger"
@@ -17,8 +16,8 @@ func Generate() ([]string, error) {
 		ver    string
 		outDir string
 		files  []string
-		_      = design.Design
 	)
+	//these are flags passed in via the goagen tool -d -o
 	set := flag.NewFlagSet("app", flag.PanicOnError)
 	set.String("design", "", "") // Consume design argument so Parse doesn't complain
 	set.StringVar(&ver, "version", "", "")
@@ -72,7 +71,7 @@ func Generate() ([]string, error) {
 		return nil, err
 	}
 	files = append(files, sFiles...)
-
+	//generate config
 	sFiles, err = generators.ConfigGenerate()
 	if err != nil {
 		return nil, err
